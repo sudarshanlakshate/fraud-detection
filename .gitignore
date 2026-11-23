@@ -8,3 +8,20 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Local credentials and environment configuration
+.env
+.env.*
+!.env.example
+
+# Downloaded and derived data stays local; keep placeholder files versioned.
+/data/raw/**
+/data/interim/**
+/data/processed/**
+!/data/raw/.gitkeep
+!/data/interim/.gitkeep
+!/data/processed/.gitkeep
+
+/docs/
+cloud_phase1.md
+/notebooks/experimentation.ipynb
