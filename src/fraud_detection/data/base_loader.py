@@ -23,7 +23,7 @@ class BaseLoader:
         self.gcp_project_id = settings.gcp_project_id
         self.gcp_data_bucket = settings.gcp_data_bucket
 
-    def load_raw_data(self, filename: str | Path) -> DataFrame:
+    def get_raw_data_path(self, filename: str | Path) -> Path:
         relative_path = Path(filename)
         raw_data_dir = self.raw_data_dir.resolve()
         file_path = (
@@ -41,7 +41,10 @@ class BaseLoader:
         if not file_path.is_file():
             self._download_from_cloud(object_path, file_path)
 
-        return read_csv(file_path)
+        return file_path
+
+    def load_raw_data(self, filename: str | Path) -> DataFrame:
+        return read_csv(self.get_raw_data_path(filename))
 
     def _download_from_cloud(self, object_path: Path, file_path: Path) -> None:
         provider = self._get_cloud_provider()

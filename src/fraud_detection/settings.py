@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     data_dir: Path = base_dir / "data"
     raw_data_dir: Path = data_dir / "raw"
     interim_data_dir: Path = data_dir / "interim"
+    processed_data_dir: Path = data_dir / "processed"
     cloud_provider: Literal["aws", "gcp"] | None = None
     raw_data_prefix: str = ""
     aws_region: str | None = None
